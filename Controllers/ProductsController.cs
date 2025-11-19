@@ -32,7 +32,7 @@ public class ProductsController : ControllerBase
     {
         try
         {
-            var products = await _context.Product.ToListAsync();
+            var products = await _context.Product.OrderBy(p => p.Price).ToListAsync();
             return Ok(products);
         }
         catch (Exception e)

@@ -115,11 +115,11 @@ app.MapHealthChecks("health");
 // ===== SCHEDULE RECURRING JOBS =======
 
 // Schedule scraper to run daily at 3PM
-RecurringJob.AddOrUpdate<ScraperService>(
-    "scrape-sandals-daily",
-    service => service.ScrapeAllRetailers("sandals"),
-    Cron.Daily(15)
-);
+// RecurringJob.AddOrUpdate<ScraperService>(
+//     "scrape-sandals-daily",
+//     service => service.ScrapeAllRetailers("sandals"),
+//     Cron.Daily(15)
+// );
 
 // RecurringJob.AddOrUpdate<ScraperService>(
 //     "scrape-popular-hourly",
