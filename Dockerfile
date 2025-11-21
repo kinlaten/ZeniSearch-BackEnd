@@ -33,13 +33,16 @@ RUN dotnet restore
 # Copy the entire backend source directory
 COPY . .
 
+# Build the project first (this installs Playwright package)
+RUN dotnet build backend.csproj -c Release --no-restore
+
 # Install Playwright CLI tool (SDK available here)
 RUN dotnet tool install --global Microsoft.Playwright.CLI
 
 # Add Playwright tools to PATH
 ENV PATH="${PATH}:/root/.dotnet/tools"
 
-# Install Playwright browsers
+# Install Playwright browsers (now project is built, so CLI can detect Playwright)
 RUN playwright install chromium
 
 # Build and publish
