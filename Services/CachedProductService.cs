@@ -1,5 +1,6 @@
 
 using HtmlAgilityPack;
+using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging.Abstractions;
@@ -39,7 +40,8 @@ public class CachedProductService
         {
             // Get from db
             var products = await _context.Product
-                            .Where(p => p.Name.Contains(query) || (p.Brand != null && p.Brand.Contains(query)))
+                            .Where(p => EF.Functions.ILike(p.Name, $"%{query}%")
+                            || (p.Brand != null && EF.Functions.ILike(p.Brand, $"%{query}%")))
                             .OrderBy(p => p.Price)
                             .Take(50)
                             .ToListAsync();

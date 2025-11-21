@@ -62,7 +62,7 @@ public class ScraperService
 
     public async Task ScrapePopularProducts()
     {
-        var popularSearchs = new[] { "sandals", "slides", "thongs", "flip flops" };
+        var popularSearchs = new[] { "sandals", "hat", "shirt", "pants" };
 
         foreach (var term in popularSearchs)
         {
